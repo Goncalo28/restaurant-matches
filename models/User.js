@@ -29,6 +29,10 @@ const userSchema = new Schema ({
   },
   googleID: String,
   facebookID: String,
+  index: {
+    type: Number,
+    default: 1
+  }
 })
 
 module.exports = model('User', userSchema)

@@ -16,8 +16,8 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const User = require('./models/User');
 
-//Passport-facebook 
-// const FacebookStrategy = require('passport-facebook').Strategy;
+// Passport-facebook 
+const FacebookStrategy = require('passport-facebook').Strategy;
 
 mongoose
   .connect('mongodb://localhost/restaurant-matches', {useNewUrlParser: true, useUnifiedTopology: true })
@@ -104,20 +104,20 @@ passport.use(
   )
 );
 
-//facebook strategy
-// passport.use(new FacebookStrategy({
-//   clientID: FACEBOOK_APP_ID,
-//   clientSecret: FACEBOOK_APP_SECRET,
-//   callbackURL: "/auth/facebook/callback"
-// },
-// function(accessToken, refreshToken, profile, done) {
-//   User.findOrCreate({ facebookID: profile.id }, 
-//     (err, user) => {
-//     if (err) { return done(err); }
-//     done(null, user);
-//   });
-// }
-// ));
+// facebook strategy
+passport.use(new FacebookStrategy({
+  clientID: process.env.FACEBOOK_APP_ID,
+  clientSecret: process.env.FACEBOOK_APP_SECRET,
+  callbackURL: "/auth/facebook/callback"
+},
+function(accessToken, refreshToken, profile, done) {
+  User.findOrCreate({ facebookID: profile.id }, 
+    (err, user) => {
+    if (err) { return done(err); }
+    done(null, user);
+  });
+}
+));
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -137,5 +137,8 @@ app.use('/', login);
 
 const signup = require('./routes/signup');
 app.use('/', signup);
+
+const api = require('./routes/api');
+app.use('/', api);
 
 module.exports = app;
