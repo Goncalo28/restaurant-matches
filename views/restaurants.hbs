@@ -1,0 +1,16 @@
+<h1> Restaurants</h1>
+
+
+    <h1>{{name}}</h1>
+    <img src={{featured_image}} style="width: 18rem;">
+    <p>Rating</p>
+    <p>{{user_rating.aggregate_rating}}</p>
+    <p>{{location.city}}</p>
+
+        <form action="/search" method="POST">
+    <button type="submit">Not this one</button>
+  </form>
+      <form action="/search-liked/{{id}}" method="POST">
+    <button type="submit">I like it!</button>
+    </form>
+ 

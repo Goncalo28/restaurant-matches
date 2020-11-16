@@ -2,6 +2,8 @@ const axios = require('axios');
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const passport = require('passport');
+const Likes = require('../models/Likes');
 const zomatoAPI = axios.create({
   baseURL: 'https://developers.zomato.com/api/v2.1',
   headers: { 'user-key': process.env.ZOMATO_KEY }
@@ -66,36 +68,58 @@ zomatoAPI.get('/search?entity_id=82&entity_type=city&count=20', async (req, res)
 })
 
 router.get('/search', async (req, res) => {
-    let index
-    let userId = user._id
-
-    try {
-      const user = await User.findById(userId)
-      index = user.index
-  
-      const data = await zomatoAPI.get(`/search?entity_id=82&entity_type=city&count=${index}`)
-  
-      const categories = data.data.restaurants
-      console.log(categories)
-      res.render('dashboard', { categories })
-      
-    } catch (error) {
-      console.log(error)
-    }
-})
-
-router.post('/search', async (req, res) => {
+   let user = req.user
+   let index = req.user.index
   try {
-    const user = await User.findOne({username: 'test'})
-    console.log(user._id)
-    let userId = user._id
-    let index = user.index++
-    await User.findByIdAndUpdate({_id: userId, index})
-    
+    // const foundUser = await User.findByIdAndUpdate({userID, index: index++})
+    const data = await zomatoAPI.get(`/search?entity_id=82&entity_type=city&start=${index}&count=1`)
+    const restaurant = data.data.restaurants[0].restaurant
+    console.log(restaurant)
+    res.render('restaurants', restaurant )
   } catch (error) {
     console.log(error)
   }
-  
+})
+router.post('/search', async (req, res) => {
+let user = req.user
+let userID = req.user._id
+let index = user.index
+try {
+  const foundUser = await User.findById(userID)
+ // console.log(foundUser.index)
+  index++
+  const updateIndex = await User.findByIdAndUpdate(userID, {index: index})
+  console.log(updateIndex)
+  res.redirect('/search')
+} catch (error) {
+  console.log(error)
+}
 })
 
+
+router.post('/search-liked/:id', async (req, res) => {
+  let user = req.user
+  let userID = req.user._id
+  let index = user.index
+  let restaurantId = req.params.id
+  console.log(restaurantId)
+  try {
+    const foundUser = await User.findById(userID)
+   // console.log(foundUser.index)
+    index++
+
+    const likes = await Likes.create({user: userID, restaurantId: restaurantId})
+
+    await User.findByIdAndUpdate(userID, {index: index, $push: {likes: likes._id}})
+  //  console.log(updateIndex)
+   // console.log(like)
+    res.redirect('/search')
+  } catch (error) {
+    console.log(error)
+  }
+  })
+
 module.exports = router;
+
+
+

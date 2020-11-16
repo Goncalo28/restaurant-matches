@@ -4,14 +4,8 @@
 <div>
  
 
-  {{#each categories}}
-    <h1>{{restaurant.name}}</h1>
-    <img src={{restaurant.featured_image}} style="width: 18rem;">
-    <p>Rating</p>
-    <p>{{restaurant.user_rating.aggregate_rating}}</p>
-    <p>{{restaurant.location.city}}</p>
-  {{/each}}
-  <form action="/search" method="POST">
-    <button type="submit">submit</button>
+
+    <form action="/search" method="POST">
+    <button type="submit">Start!</button>
   </form>
 </div>

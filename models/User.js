@@ -32,7 +32,11 @@ const userSchema = new Schema ({
   index: {
     type: Number,
     default: 1
-  }
+  },
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Likes'
+  }]
 })
 
 module.exports = model('User', userSchema)
