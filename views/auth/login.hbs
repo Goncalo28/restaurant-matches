@@ -1,1 +1,21 @@
-<h1> hi</h1>
+<h1>Login</h1>
+
+<form action="/" method="POST">
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" name="username">
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <button type="submit">Log in</button>
+  </div>
+
+  {{#if errorMessage}}
+    <div class="error-message">{{errorMessage}}</div>
+  {{/if}}
+
+   <p class="account-message">
+    Don't have have an account?
+    <a href="/signup">Sign up</a>
+  </p>
+  <a href="/auth/facebook">Login with Facebook</a>
+</form>

@@ -26,7 +26,9 @@ const userSchema = new Schema ({
     type: String,
     required: true,
     trim: true,
-  }
+  },
+  googleID: String,
+  facebookID: String,
 })
 
 module.exports = model('User', userSchema)
