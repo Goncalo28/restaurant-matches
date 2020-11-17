@@ -19,24 +19,25 @@ const userSchema = new Schema ({
   email: {
     type: String,
     unique: true,
-    required: true,
+    //required: true,
     trim: true,
   },
   password: {
     type: String,
-    required: true,
+    //required: true,
     trim: true,
   },
   googleID: String,
-  facebookID: String,
+  //facebookID: String,
   index: {
     type: Number,
     default: 1
   },
-  likes: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Likes'
-  }]
+  // likes: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Likes'
+  // }]
+  likes: Array,
   // connectedTo: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: 'User'

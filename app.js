@@ -18,6 +18,8 @@ const User = require('./models/User');
 
 // Passport-facebook 
 const FacebookStrategy = require('passport-facebook').Strategy;
+// Passport-google
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 mongoose
   .connect('mongodb://localhost/restaurant-matches', {useNewUrlParser: true, useUnifiedTopology: true })
@@ -105,19 +107,53 @@ passport.use(
 );
 
 // facebook strategy
-passport.use(new FacebookStrategy({
-  clientID: process.env.FACEBOOK_APP_ID,
-  clientSecret: process.env.FACEBOOK_APP_SECRET,
-  callbackURL: "/auth/facebook/callback"
-},
-function(accessToken, refreshToken, profile, done) {
-  User.findOrCreate({ facebookID: profile.id }, 
-    (err, user) => {
-    if (err) { return done(err); }
-    done(null, user);
-  });
-}
-));
+// passport.use(new FacebookStrategy({
+//   clientID: process.env.FACEBOOK_ID,
+//   clientSecret: process.env.FACEBOOK_SECRET,
+//   callbackURL: "/auth/facebook/callback"
+// },
+// function(accessToken, refreshToken, profile, done) {
+//   User.findOne({ facebookID: profile.id })
+//         .then(user => {
+//           if (user) {
+//             done(null, user);
+//             return;
+//           }
+//           User.create({ facebookID: profile.id, username: profile.displayName })
+//             .then(newUser => {
+//               done(null, newUser);
+//             })
+//             .catch(err => done(err)); // closes User.create()
+//         })
+//         .catch(err => done(err)); // closes User.findOne()
+//     }
+//   )
+// );
+// google strategy
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.GOOGLE_ID,
+      clientSecret: process.env.GOOGLE_SECRET,
+      callbackURL: "/auth/google/callback",
+    },
+    (accessToken, refreshToken, profile, done) => {
+      User.findOne({ googleID: profile.id })
+        .then(user => {
+          if (user) {
+            done(null, user);
+            return;
+          }
+          User.create({ googleID: profile.id, username: profile.displayName })
+            .then(newUser => {
+              done(null, newUser);
+            })
+            .catch(err => done(err)); // closes User.create()
+        })
+        .catch(err => done(err)); // closes User.findOne()
+    }
+  )
+);
 
 app.use(passport.initialize());
 app.use(passport.session());

@@ -51,11 +51,12 @@ router.post('/search-liked/:id', async (req, res) => {
     
     let userPair = await UserPair.find({ $or: [{userOne: userID}, {userTwo: userID }]}) 
     index++
-    const likes = await Likes.create({user: userID, restaurantId: restaurantId})
-    await User.findByIdAndUpdate(userID, {index: index, $push: {likes: likes._id}})
+    //const likes = await Likes.create({user: userID, restaurantId: restaurantId})
+    await User.findByIdAndUpdate(userID, {index: index, $push: {likes: restaurantId}})
 
     //find current logged in users' likes
     let currentUserLikes = user.likes
+    console.log(currentUserLikes)
 
     //get second user id  
     let secondUserID = userPair[0].userTwo
@@ -65,18 +66,20 @@ router.post('/search-liked/:id', async (req, res) => {
 
     //secondUser likes 
     let secondUserLikes = secondUser.likes
+    //let test = await Likes.findById(secondUserLikes)
 
     const match = currentUserLikes.filter(restaurant => secondUserLikes.includes(restaurant));
 
-    const matchedRestaurant = await Likes.findById(match)
-
-    if(matchedRestaurant.length === 0){
+    console.log(match)
+    //const matchedRestaurant = await Likes.findById(match)
+    
+    if(match.length === 0){
 
       res.redirect('/search')
 
     } else {
       
-      let restaurantMatchedId = matchedRestaurant.restaurantId
+      let restaurantMatchedId = match[0]
       const restaurantData = await zomatoAPI.get(`/restaurant?res_id=${restaurantMatchedId}`)
       let restaurantToGoTo = restaurantData.data
 

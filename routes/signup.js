@@ -3,8 +3,12 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const saltRounds = 10;
 const User = require('../models/User');
+const passport = require('passport')
 
 router.get('/signup', (req, res) => {
+  if(req.user){
+    res.redirect('/home')
+  }
   res.render('auth/signup')
 })
 

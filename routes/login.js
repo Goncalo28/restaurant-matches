@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-// const bcrypt = require('bcryptjs');
-// const saltRounds = 10;
-// const User = require('../models/User');
 const passport = require('passport');
 
 //Login route
 router.get('/', (req, res) => {
+  if(req.user){
+    res.redirect('/home')
+  }
   res.render('auth/login');
 });
 
@@ -52,43 +52,22 @@ router.get('/home', (req, res) => {
 })
 
 //Facebook login
-router.get('/auth/facebook', passport.authenticate('facebook'));
+// router.get('/auth/facebook', passport.authenticate('facebook'));
 
-router.get('/auth/facebook/callback',
-  passport.authenticate('facebook', 
-    { successRedirect: '/',
-    failureRedirect: '/login' }));
+// router.get('/auth/facebook/callback',
+//   passport.authenticate('facebook', 
+//     { successRedirect: '/home',
+//     failureRedirect: '/login' }));
 
-//Without passport
-
-// router.post('/', (req, res) => {
-//   const { username, password } = req.body;
-
-//   //Check if user exists 
-//   User.findOne({'username': username})
-//     .then((user) => {
-//       if(!user) {
-//           res.render('auth/login')
-//           // add errorMessage later
-//           //, {
-//           //  errorMessage: 'Invalid login'
-//           //})
-//           return;
-//       }
-
-//       //Check if password is correct
-//       if(bcrypt.compareSync(password, user.password)) {
-//         req.session.currentUser = user;
-//         res.render('dashboard');
-
-//       } else {
-//         res.render('auth/login')
-//         // add errorMessage later
-//         // , {
-//         //   errorMessage: 'Invalid Login'
-//         // });
-//       }
-//     });
-// });
+//Google login
+router.get('/auth/google',
+  passport.authenticate('google', { scope: ['profile'] }));
+ 
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/home');
+  });
 
 module.exports = router;
