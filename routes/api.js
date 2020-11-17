@@ -57,18 +57,21 @@ const zomatoAPI = axios.create({
 //   res.render('dashboard', { categories })
 // })
 
-zomatoAPI.get('/search?entity_id=82&entity_type=city&count=20', async (req, res) => {
-  try {
-    const data = await req.data
-    console.log(data)
-    
-  } catch (error) {
-    console.log(error)
-  }
-})
+// zomatoAPI.get('/search?entity_id=82&entity_type=city&count=20', async (req, res) => {
+//   try {
+//     const data = await req.data
+//     console.log(data)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })
 
 router.get('/search', async (req, res) => {
-   let user = req.user
+  let user = req.user
+  if (!user) {
+    res.redirect('/'); // can't access the page, so go and log in
+    return;
+  }
    let index = req.user.index
   try {
     // const foundUser = await User.findByIdAndUpdate({userID, index: index++})
@@ -81,19 +84,19 @@ router.get('/search', async (req, res) => {
   }
 })
 router.post('/search', async (req, res) => {
-let user = req.user
-let userID = req.user._id
-let index = user.index
-try {
-  const foundUser = await User.findById(userID)
- // console.log(foundUser.index)
-  index++
-  const updateIndex = await User.findByIdAndUpdate(userID, {index: index})
-  console.log(updateIndex)
-  res.redirect('/search')
-} catch (error) {
-  console.log(error)
-}
+  let user = req.user
+  let userID = req.user._id
+  let index = user.index
+  try {
+    const foundUser = await User.findById(userID)
+    // console.log(foundUser.index)
+    index++
+    const updateIndex = await User.findByIdAndUpdate(userID, {index: index})
+    console.log(updateIndex)
+    res.redirect('/search')
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 
@@ -111,8 +114,8 @@ router.post('/search-liked/:id', async (req, res) => {
     const likes = await Likes.create({user: userID, restaurantId: restaurantId})
 
     await User.findByIdAndUpdate(userID, {index: index, $push: {likes: likes._id}})
-  //  console.log(updateIndex)
-   // console.log(like)
+    //  console.log(updateIndex)
+    // console.log(like)
     res.redirect('/search')
   } catch (error) {
     console.log(error)

@@ -37,6 +37,10 @@ const userSchema = new Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Likes'
   }]
+  // connectedTo: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User'
+  // }],
 })
 
 module.exports = model('User', userSchema)
