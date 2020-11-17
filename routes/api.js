@@ -1,6 +1,7 @@
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
+const UserPair = require('../models/UserPair');
 const User = require('../models/User');
 const passport = require('passport');
 const Likes = require('../models/Likes');
@@ -77,7 +78,7 @@ router.get('/search', async (req, res) => {
     // const foundUser = await User.findByIdAndUpdate({userID, index: index++})
     const data = await zomatoAPI.get(`/search?entity_id=82&entity_type=city&start=${index}&count=1`)
     const restaurant = data.data.restaurants[0].restaurant
-    console.log(restaurant)
+   // console.log(restaurant)
     res.render('restaurants', restaurant )
   } catch (error) {
     console.log(error)
@@ -92,7 +93,7 @@ router.post('/search', async (req, res) => {
     // console.log(foundUser.index)
     index++
     const updateIndex = await User.findByIdAndUpdate(userID, {index: index})
-    console.log(updateIndex)
+   // console.log(updateIndex)
     res.redirect('/search')
   } catch (error) {
     console.log(error)
@@ -105,17 +106,35 @@ router.post('/search-liked/:id', async (req, res) => {
   let userID = req.user._id
   let index = user.index
   let restaurantId = req.params.id
-  console.log(restaurantId)
+  //console.log(restaurantId)
   try {
-    const foundUser = await User.findById(userID)
-   // console.log(foundUser.index)
+    let userPair = await UserPair.find({ $or: [{userOne: userID}, {userTwo: userID }]}) 
+    //console.log(userPair)
     index++
-
     const likes = await Likes.create({user: userID, restaurantId: restaurantId})
-
     await User.findByIdAndUpdate(userID, {index: index, $push: {likes: likes._id}})
-    //  console.log(updateIndex)
-    // console.log(like)
+    // USER PAIR FOUND
+    // _id: 5fb3bc9bc9a59f7cc87cc182,
+    // userOne: 5fb1cbe0c13aaa1e3a6f3d0f,
+    // userTwo: 5fb2c7373d785c5d41676dcf,
+
+    //find current logged in users' likes
+    let currentUserLikes = user.likes
+
+    //get second user id  
+    let secondUserID = userPair[0].userTwo
+
+    //find second user in DB 
+    let secondUser = await User.findById(secondUserID)
+
+    //secondUser likes 
+    let secondUserLikes = secondUser.likes
+
+    const match = currentUserLikes.filter(restaurant => secondUserLikes.includes(restaurant));
+
+    const matchedRestaurant = await Likes.findById(match)
+    console.log(matchedRestaurant.restaurantId);
+
     res.redirect('/search')
   } catch (error) {
     console.log(error)
