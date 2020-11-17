@@ -141,4 +141,10 @@ app.use('/', signup);
 const api = require('./routes/api');
 app.use('/', api);
 
+const profile = require('./routes/profile');
+app.use('/', profile);
+
+const connectUser = require('./routes/connectUser');
+app.use('/', connectUser);
+
 module.exports = app;
