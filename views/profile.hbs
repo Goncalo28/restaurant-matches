@@ -1,0 +1,22 @@
+<h1>Welcome to your profile {{user.username}} </h1> 
+<p>Username: {{user.username}}</p>
+<p>Email: {{user.email}}</p>
+<p>First Name: {{user.firstName}}</p>
+<p>Last Name: {{user.lastName}}</p>
+
+<form action="/connect" method="POST">
+<label for="connect-to-another-user">
+  Connect to:
+  <input type="text" name="username" id="username" placeholder="Enter username">
+  <button type="submit">Connect</button>
+</label>
+</form>
+
+<form action="" enctype="multipart/form-data">
+<label> 
+  Profile picture
+  <input type="file" name="image" id="image">
+</label>
+</form>
+
+<a href="/profile/edit">Edit</a>

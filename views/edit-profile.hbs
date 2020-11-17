@@ -1,0 +1,14 @@
+<h1>Edit your info</h1>
+
+<form action="/profile/edit" method="POST">
+  <label> First Name : </label>
+  <input type="text" name="firstName" id="firstName" value="{{user.firstName}}">
+
+  <label> Last Name :</label>
+  <input type="text" name="lastName" id="lastName" value="{{user.lastName}}">
+
+  <label> Email: </label>
+  <input type="email" name="email" id="email" value="{{user.email}}">
+
+  <button type="submit">Update your info</button>
+</form>
