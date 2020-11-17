@@ -56,7 +56,6 @@ router.post('/search-liked/:id', async (req, res) => {
 
     //find current logged in users' likes
     let currentUserLikes = user.likes
-    console.log(currentUserLikes)
 
     //get second user id  
     let secondUserID = userPair[0].userTwo
@@ -66,12 +65,8 @@ router.post('/search-liked/:id', async (req, res) => {
 
     //secondUser likes 
     let secondUserLikes = secondUser.likes
-    //let test = await Likes.findById(secondUserLikes)
 
     const match = currentUserLikes.filter(restaurant => secondUserLikes.includes(restaurant));
-
-    console.log(match)
-    //const matchedRestaurant = await Likes.findById(match)
     
     if(match.length === 0){
 
@@ -79,12 +74,14 @@ router.post('/search-liked/:id', async (req, res) => {
 
     } else {
       
-      let restaurantMatchedId = match[0]
+      let restaurantMatchedId = match[match.length - 1]
+      
       const restaurantData = await zomatoAPI.get(`/restaurant?res_id=${restaurantMatchedId}`)
       let restaurantToGoTo = restaurantData.data
 
       res.render('restaurant-match', restaurantToGoTo)
     }
+
   } catch (error) {
     console.log(error)
   }

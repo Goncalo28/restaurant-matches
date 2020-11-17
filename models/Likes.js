@@ -10,6 +10,3 @@ const likeSchema = new Schema ({
 });
 
 module.exports = model('Likes', likeSchema)
-
-// find users that liked a restaurant
-//like.find({ restaurantid: 234235})

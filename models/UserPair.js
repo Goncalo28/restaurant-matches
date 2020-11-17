@@ -13,14 +13,3 @@ const userPair = new Schema ({
 });
 
 module.exports = model('UserPair', userPair)
-
-
-
-
-  //get user by
-  // find user name to match with
-  // does match with current user already exist?
-  // if no
-  // create userPair.Create session.userid + userid do input
-
-  //find( ) exists document com 
