@@ -38,7 +38,7 @@ router.post('/signup', async (req, res) => {
     
     //Add new user to DB 
     const createdUser = await User.create({ username, firstName, lastName, email, password: hashedPass })
-    res.redirect('/')
+    res.redirect('/login')
     
   } catch (error) {
     console.log(error)

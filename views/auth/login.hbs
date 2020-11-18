@@ -1,13 +1,17 @@
+<div id="loginpage">
+
+<img src="/images/logo.png">
 <h1>Login</h1>
 
-<form action="/" method="POST">
-  <div>
+<div id="formlogin">
+<form  action="/login" method="POST">
+  
     <label for="username">Username:</label>
-    <input type="text" name="username">
-    <label for="password">Password:</label>
-    <input type="password" name="password">
+    <input type="text" name="username"> <br>
+    <label for="password">Password: </label>
+    <input type="password" name="password"> <br>
     <button type="submit">Log in</button>
-  </div>
+  
 
   {{#if errorMessage}}
     <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
@@ -20,3 +24,5 @@
   {{!-- <a href="/auth/facebook">Login with Facebook</a> --}}
   <a href="/auth/google"><img src="images/google-login.png" alt="google-login-image" style="width: 230px; margin-left: -0.8em;"></a>
 </form>
+</div>
+</div>

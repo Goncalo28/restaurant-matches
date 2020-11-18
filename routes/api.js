@@ -14,7 +14,7 @@ const zomatoAPI = axios.create({
 router.get('/search', async (req, res) => {
   let user = req.user
   if (!user) {
-    res.redirect('/'); // can't access the page, so go and log in
+    res.redirect('/login'); // can't access the page, so go and log in
     return;
   }
    let index = req.user.index

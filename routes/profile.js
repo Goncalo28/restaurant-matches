@@ -8,7 +8,7 @@ router.get('/profile', async (req, res) => {
   let user = req.user
   let userID = user._id
   if (!user) {
-    res.redirect('/'); // can't access the page, so go and log in
+    res.redirect('/login'); // can't access the page, so go and log in
     return;
   }
 
@@ -38,7 +38,7 @@ router.get('/profile', async (req, res) => {
 //Edit profile
 router.get('/profile/edit', async (req, res) => {
   if (!req.user) {
-    res.redirect('/'); // can't access the page, so go and log in
+    res.redirect('/login'); // can't access the page, so go and log in
     return;
   }
   try {

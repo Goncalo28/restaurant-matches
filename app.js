@@ -166,7 +166,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Matchres';
 
 const login = require('./routes/login');
 app.use('/', login);
@@ -182,5 +182,8 @@ app.use('/', profile);
 
 const connectUser = require('./routes/connectUser');
 app.use('/', connectUser);
+
+const main = require('./routes/main');
+app.use('/', main);
 
 module.exports = app;

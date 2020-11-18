@@ -1,8 +1,97 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
 
-/*# sourceMappingURL=style.css.map */
+         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+ 
+
+
+         
+         .btn-grad {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+         .btn-grad {
+            margin: 10px;
+            padding: 15px 45px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            border-radius: 10px;
+            display: block;
+            border-style: none;
+            width: 195px;
+            height: 60px;
+            margin-top: 30%;
+            margin-left: 42% !important;
+          }
+
+          .btn-grad:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+          }
+         
+          .mainpic {
+            height: 600px;
+            background-image: url("../images/backgroundpic.jpg");
+            background-size: 100%;
+            display: flex;
+          }
+
+  
+
+        .navbar {
+          position: absolute !important;
+          background: transparent !important;
+          width: 100% !important;
+          margin-top: 20px;
+        }
+
+        .navbar-brand {
+          color: white !important;
+          font-size: 30px !important;
+        }
+
+        .navbar-nav {
+          margin-right: 10%;
+          margin-left: 85%;
+          background: white;
+          color: #FF512F;
+          padding-left: 15px !important;
+          padding: 9px 15px;
+          border-radius: 7px;
+
+        }
+
+        .navbar-nav:hover {
+        text-decoration: none;
+        background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+          color: white;
+          border-radius: 7px;
+        }
+
+
+        
+
+       
+        #loginpage {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+  
+
+        #formlogin {
+          margin-top: 10px;
+          width: 250px;
+          text-align: center !important;
+        }
+
+        #formlogin label{
+          margin-bottom: 10px;
+        }
+ /*
+        #formlogin button{
+          margin-top: 10px;
+        }
+
+        */

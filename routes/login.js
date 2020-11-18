@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 //Login route
-router.get('/', (req, res) => {
+router.get('/login', (req, res) => {
   if(req.user){
     res.redirect('/home')
   }
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 //Login route using passport
-router.post('/', (req, res, next) => {
+router.post('/login', (req, res, next) => {
   passport.authenticate('local', (error, theUser, failureDetails) => {
 
     if (error) {
