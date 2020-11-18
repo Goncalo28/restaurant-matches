@@ -26,6 +26,7 @@ router.get('/search', async (req, res) => {
     console.log(error)
   }
 })
+
 router.post('/search', async (req, res) => {
   let user = req.user
   let userID = req.user._id
@@ -105,6 +106,12 @@ router.post('/search-liked/:id', async (req, res) => {
   } catch (error) {
     console.log(error)
   }
+})
+
+router.get('/search-liked/:id', async (req,res) =>  {
+  let restaurantID = req.params.id;
+  let restaurant  = await zomatoAPI.get(`restaurant?res_id=${restaurantID}`)
+  res.render('details', restaurant.data)
 })
 
 module.exports = router;

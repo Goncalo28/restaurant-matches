@@ -22,7 +22,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 mongoose
-  .connect('mongodb://localhost/restaurant-matches', {useNewUrlParser: true, useUnifiedTopology: true })
+  .connect( process.env.MONGO_DB_URI , {useNewUrlParser: true, useUnifiedTopology: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
