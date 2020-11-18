@@ -2,15 +2,37 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 const passport = require('passport');
-
+const UserPair = require('../models/UserPair');
 //get profile page
 router.get('/profile', async (req, res) => {
   let user = req.user
+  let userID = user._id
   if (!user) {
     res.redirect('/'); // can't access the page, so go and log in
     return;
   }
-  res.render('profile', { user });
+
+  try {
+    let userPair = await UserPair.findOne({ $or: [{userOne: userID}, {userTwo: userID }]}) 
+    let secondUser;
+    let secondUserID;
+
+    if(userPair){
+      if (userPair.userOne.toString() !== userID.toString()) {
+       secondUserID = userPair.userOne;
+      } else {
+       secondUserID = userPair.userTwo;
+      }
+      secondUser = await User.findById(secondUserID)
+    }
+ 
+    res.render('profile', { user, secondUser });
+    
+  } catch (error) {
+    console.log(error)
+  }
+
+  
 })
 
 //Edit profile

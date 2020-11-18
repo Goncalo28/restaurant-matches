@@ -49,34 +49,54 @@ router.post('/search-liked/:id', async (req, res) => {
 
   try {
     
-    let userPair = await UserPair.find({ $or: [{userOne: userID}, {userTwo: userID }]}) 
+    let userPair = await UserPair.findOne({ $or: [{userOne: userID}, {userTwo: userID }]}) 
     index++
     //const likes = await Likes.create({user: userID, restaurantId: restaurantId})
     await User.findByIdAndUpdate(userID, {index: index, $push: {likes: restaurantId}})
 
     //find current logged in users' likes
-    let currentUserLikes = user.likes
+   // let currentUserLikes = user.likes
 
-    //get second user id  
-    let secondUserID = userPair[0].userTwo
+    //get the other user id  
+   // let secondUserID = userPair[0].userTwo
+   let secondUserID;
+  //  console.log('userPair.userOne', userPair.userOne);
+  //  console.log('UserID', userID);
 
+   if (userPair.userOne.toString() !== userID.toString()) {
+     //console.log('not equal');
+    secondUserID = userPair.userOne;
+   } else {
+    //console.log('equal');
+    secondUserID = userPair.userTwo;
+   }
+ 
+   // console.log('secondUserID', secondUserID);
     //find second user in DB 
     let secondUser = await User.findById(secondUserID)
 
     //secondUser likes 
     let secondUserLikes = secondUser.likes
-
-    const match = currentUserLikes.filter(restaurant => secondUserLikes.includes(restaurant));
     
-    if(match.length === 0){
+
+    //console.log('restaurantid', restaurantId)
+    const match = secondUserLikes.some((secondUserLike) => {
+      console.log('secondUserLike', secondUserLike)
+      return secondUserLike === restaurantId;
+    });
+
+   // const match = currentUserLikes.filter(restaurant => secondUserLikes.includes(restaurant));
+    
+    //if(match.length === 0){
+    if(!match){
 
       res.redirect('/search')
 
     } else {
       
-      let restaurantMatchedId = match[match.length - 1]
+      //let restaurantMatchedId = match[match.length - 1]
       
-      const restaurantData = await zomatoAPI.get(`/restaurant?res_id=${restaurantMatchedId}`)
+      const restaurantData = await zomatoAPI.get(`/restaurant?res_id=${restaurantId}`)
       let restaurantToGoTo = restaurantData.data
 
       res.render('restaurant-match', restaurantToGoTo)

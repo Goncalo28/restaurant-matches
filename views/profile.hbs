@@ -5,11 +5,16 @@
 <p>Last Name: {{user.lastName}}</p>
 
 <form action="/connect" method="POST">
-<label for="connect-to-another-user">
-  Connect to:
-  <input type="text" name="username" id="username" placeholder="Enter username">
-  <button type="submit">Connect</button>
-</label>
+  <label for="connect-to-another-user">
+    Connect to:
+   {{#if secondUser}}
+      <input type="text" name="username" id="username" placeholder="Enter username" value="{{secondUser.username}}" disabled>
+      <button type="submit" disabled>Connect</button>
+    {{else}}
+      <input type="text" name="username" id="username" placeholder="Enter username">
+      <button type="submit">Connect</button>
+   {{/if}} 
+  </label>
 </form>
 
 <form action="" enctype="multipart/form-data">
