@@ -108,10 +108,25 @@ router.post('/search-liked/:id', async (req, res) => {
   }
 })
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> c34e0762149770cc2f4c01198ebe555dc3952adb
 router.get('/search-liked/:id', async (req,res) =>  {
   let restaurantID = req.params.id;
   let restaurant  = await zomatoAPI.get(`restaurant?res_id=${restaurantID}`)
   res.render('details', restaurant.data)
+<<<<<<< HEAD
 })
 
+=======
+
+  
+})
+
+
+
+
+
+>>>>>>> c34e0762149770cc2f4c01198ebe555dc3952adb
 module.exports = router;
