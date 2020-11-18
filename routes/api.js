@@ -107,4 +107,17 @@ router.post('/search-liked/:id', async (req, res) => {
   }
 })
 
+
+router.get('/search-liked/:id', async (req,res) =>  {
+  let restaurantID = req.params.id;
+  let restaurant  = await zomatoAPI.get(`restaurant?res_id=${restaurantID}`)
+  res.render('details', restaurant.data)
+
+  
+})
+
+
+
+
+
 module.exports = router;
