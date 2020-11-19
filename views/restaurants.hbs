@@ -1,16 +1,22 @@
+
+
+<div id="loginpage">
+<img src="/images/logo.png">
+
 <h1> Restaurants</h1>
 
 
     <h1>{{name}}</h1>
     <a href="/search-liked/{{id}}"><img src={{featured_image}} style="width: 18rem;"></a> 
-    <p>Rating</p>
-    <p>{{user_rating.aggregate_rating}}</p>
-    <p>{{location.city}}</p>
+    <p>Rating: {{user_rating.aggregate_rating}}</p>
+    <p>City: {{location.city}}</p>
 
+<div id="likeornot">
         <form action="/search" method="POST">
-    <button type="submit">Not this one</button>
+    <button class="btn-like" type="submit">Not this one</button>
   </form>
       <form action="/search-liked/{{id}}" method="POST">
-    <button type="submit">I like it!</button>
+    <button class="btn-like" type="submit">I like it!</button>
     </form>
- 
+    </div>
+ </div>

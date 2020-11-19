@@ -1,13 +1,17 @@
 
+<div id="loginpage">
 
+<img src="/images/logo.png">
 <h1>Hey {{user.username}}</h1>
 <p>This is your home page</p>
 
 <div>
   <form action="/search" method="POST">
-    <button class="btn-grad" type="submit">Start!</button>
+    <button class="btn-grad-start" type="submit">Start!</button>
   </form>
 </div>
 
-<a href="/profile">Profile</a>
-<a href="/logout">Log Out</a>
+<a class="links" href="/profile">Profile</a>
+<a class="links" href="/logout">Log Out</a>
+
+</div>

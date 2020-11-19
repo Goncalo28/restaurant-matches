@@ -4,7 +4,7 @@
  
 
 
-         
+         /* MAIN PAGE *******************************************************************/
          .btn-grad {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
          .btn-grad {
             margin: 10px;
@@ -31,7 +31,7 @@
           
           
           .mainpic {
-            height: 850px;
+            height: 690px;
             background-image: url("../images/backgroundpic.jpg");
             background-size: cover;
             display: flex;
@@ -75,16 +75,15 @@
           border-radius: 7px;
         }
 
-        .navbar-nav:hover {
+        .login:hover {
           text-decoration: none;
           background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
-          color: white;
+          color: white !important;
           border-radius: 7px;
         }
 
 
-        
-
+          /* LOG IN PAGE *******************************************************************/
        
         #loginpage {
           display: flex;
@@ -103,9 +102,142 @@
         #formlogin label{
           margin-bottom: 10px;
         }
- /*
-        #formlogin button{
+
+
+        .account-message {
           margin-top: 10px;
+          margin-bottom: 1rem;
+          width: 226px;
         }
 
-        */
+        .btn-grad-login {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+        .btn-grad-login {
+           margin: 10px 50px;
+           padding: 15px 45px;
+           text-align: center;
+           text-transform: uppercase;
+           transition: 0.5s;
+           background-size: 200% auto;
+           color: white;            
+           border-radius: 10px;
+           display: block;
+           border-style: none;
+
+         }
+
+         .btn-grad-login:hover {
+           background-position: right center; 
+           color: #fff;
+           text-decoration: none;
+         }
+
+         #formlogin a:hover{
+           text-decoration: none;
+           color:#FF512F;
+         }
+
+          /* SIGN IN PAGE *******************************************************************/
+      
+         .btn-grad-sign {background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+        .btn-grad-sign {
+           margin: 10px 40px;
+           padding: 15px 45px;
+           text-align: center;
+           text-transform: uppercase;
+           transition: 0.5s;
+           background-size: 200% auto;
+           color: white;            
+           border-radius: 10px;
+           display: block;
+           border-style: none;
+
+         }
+
+         .btn-grad-sign:hover {
+           background-position: right center; 
+           color: #fff;
+           text-decoration: none;
+         }
+
+           /* DASHBOARD PAGE *******************************************************************/
+
+         .btn-grad-start{background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+          .btn-grad-start {
+             margin: 10px 40px;
+             padding: 15px 45px;
+             text-align: center;
+             text-transform: uppercase;
+             transition: 0.5s;
+             background-size: 200% auto;
+             color: white;            
+             border-radius: 10px;
+             display: block;
+             border-style: none;
+           }
+           .btn-grad-start:hover {
+            background-position: right center; 
+            color: #fff;
+            text-decoration: none;
+          }
+         
+          .links {
+            text-decoration: none;
+            color:#FF512F;
+          }
+
+     /* EDIT PAGE *******************************************************************/
+
+     #email {
+       width: 290px;
+     }
+
+     .btn-grad-edit{background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%)}
+     .btn-grad-edit {
+        margin: 10px 40px;
+        padding: 15px 25px;
+        text-align: center;
+        text-transform: uppercase;
+        transition: 0.5s;
+        background-size: 200% auto;
+        color: white;            
+        border-radius: 10px;
+        display: block;
+        border-style: none;
+      }
+      .btn-grad-edit:hover {
+       background-position: right center; 
+       color: #fff;
+       text-decoration: none;
+     }
+
+          /* RESTAURANTS PAGE *******************************************************************/
+
+          #likeornot{
+            display: inline-flex;
+          }
+
+          .btn-like{
+            margin-right: 10px;
+            background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+            padding: 15px 25px;
+            text-align: center;
+            text-transform: uppercase;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;            
+            border-radius: 10px;
+            display: block;
+            border-style: none;
+          }
+          .btn-like:hover {
+            background-position: right center; 
+            color: #fff;
+            text-decoration: none;
+          }
+
+
+                    /* MATCHED PAGE *******************************************************************/
+
+                    .card {
+                      
+                    }

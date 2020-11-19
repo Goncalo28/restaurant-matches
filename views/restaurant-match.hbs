@@ -1,10 +1,28 @@
-<h1>You matched</h1>
-<h5>{{name}}</h5>
-<img src={{featured_image}} alt="" style="width: 20rem;">
-<p> {{cuisines}}</p>
-<p> {{phone_numbers}}</p>
-<p> {{timings}}</p>
-<p> <a href="{{menu_url}}"> Menu</a></p>
-<p> {{location.locality_verbose}} </p>
 
-<a href="/search"> Keep searching</a>
+<div id="loginpage">
+<img src="/images/logo.png">
+
+
+
+
+<div class="card" style="width: 18rem;">
+  <div id="matched-image">
+  <img src={{featured_image}} class="card-img-top" alt="...">
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+    <p class="card-text">Type of cuisine: {{cuisines}}</p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Book here: {{phone_numbers}}</li>
+    <li class="list-group-item">{{timings}}</li>
+    <li class="list-group-item">{{location.locality_verbose}}</li>
+  </ul>
+  <div class="card-body">
+   <a href="{{menu_url}}"> Menu</a>
+    <a href="/search"> Keep searching</a>
+  </div>
+</div>
+
+
+</div>

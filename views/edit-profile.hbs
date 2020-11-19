@@ -1,14 +1,20 @@
-<h1>Edit your info</h1>
 
+<div id="loginpage"> 
+    <img src="/images/logo.png">
+
+<h1>Edit your info</h1>
+<div id="formlogin">
 <form action="/profile/edit" method="POST">
   <label> First Name : </label>
   <input type="text" name="firstName" id="firstName" value="{{user.firstName}}">
 
   <label> Last Name :</label>
-  <input type="text" name="lastName" id="lastName" value="{{user.lastName}}">
+  <input type="text" name="lastName" id="lastName" value="{{user.lastName}}"> <br>
 
-  <label> Email: </label>
+  <label> Email: </label><br>
   <input type="email" name="email" id="email" value="{{user.email}}">
 
-  <button type="submit">Update your info</button>
+  <button class="btn-grad-edit" type="submit">Update your info</button>
 </form>
+</div>
+</div>
