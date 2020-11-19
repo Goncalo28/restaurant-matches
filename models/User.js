@@ -33,15 +33,11 @@ const userSchema = new Schema ({
     type: Number,
     default: 1
   },
-  // likes: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Likes'
-  // }]
   likes: Array,
-  // connectedTo: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User'
-  // }],
+  isConnected: {
+    type: Boolean,
+    default: false
+  }
 })
 
 module.exports = model('User', userSchema)

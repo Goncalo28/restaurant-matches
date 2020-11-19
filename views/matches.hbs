@@ -1,0 +1,9 @@
+<h1>Matches</h1>
+
+{{#each allRestaurantsMatched}}
+  <h5>{{name}}</h5>
+    <a href="/search-liked/{{id}}"><img src={{featured_image}} style="width: 18rem;"></a> 
+    <p>Rating</p>
+    <p>{{user_rating.aggregate_rating}}</p>
+    <p>{{location.city}}</p>
+{{/each}}

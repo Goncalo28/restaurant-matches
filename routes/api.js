@@ -17,7 +17,10 @@ router.get('/search', async (req, res) => {
     res.redirect('/login'); // can't access the page, so go and log in
     return;
   }
-   let index = req.user.index
+  if(!user.isConnected){
+    res.redirect('/profile')
+  }
+  let index = req.user.index
   try {
     const data = await zomatoAPI.get(`/search?entity_id=82&entity_type=city&start=${index}&count=1`)
     const restaurant = data.data.restaurants[0].restaurant
@@ -95,7 +98,7 @@ router.post('/search-liked/:id', async (req, res) => {
 
     } else {
       
-      //let restaurantMatchedId = match[match.length - 1]
+      await UserPair.findByIdAndUpdate(userPair, {$push: {matches: restaurantId}})
       
       const restaurantData = await zomatoAPI.get(`/restaurant?res_id=${restaurantId}`)
       let restaurantToGoTo = restaurantData.data
@@ -113,6 +116,23 @@ router.get('/search-liked/:id', async (req,res) =>  {
   let restaurantID = req.params.id;
   let restaurant  = await zomatoAPI.get(`restaurant?res_id=${restaurantID}`)
   res.render('details', restaurant.data)
+})
+
+router.get('/matches', async (req, res) => {
+  let userID = req.user._id;
+  let userPair = await UserPair.findOne({ $or: [{userOne: userID}, {userTwo: userID }]});
+  let matches = userPair.matches
+  let zomatoPromises = [];
+
+  matches.forEach((match) => {
+    zomatoPromises.push(zomatoAPI.get(`/restaurant?res_id=${match}`))
+  });
+  
+  Promise.all(zomatoPromises).then((zomatoResponses) => {
+    let restaurantMatched = zomatoResponses
+    let allRestaurantsMatched = restaurantMatched.map(results => results.data)
+    res.render('matches', {allRestaurantsMatched})
+  });
 })
 
 module.exports = router;

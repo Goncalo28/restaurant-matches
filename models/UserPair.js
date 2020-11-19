@@ -10,6 +10,11 @@ const userPair = new Schema ({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
+  matches: Array,
+  isDeleted: {
+    type: Boolean,
+    default: false
+  }
 });
 
 module.exports = model('UserPair', userPair)

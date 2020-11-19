@@ -7,9 +7,13 @@ const UserPair = require('../models/UserPair');
 router.get('/profile', async (req, res) => {
   let user = req.user
   let userID = user._id
+  let message = '';
   if (!user) {
     res.redirect('/login'); // can't access the page, so go and log in
     return;
+  }
+  if(!user.isConnected){
+    message = 'Please connect'
   }
 
   try {
@@ -26,7 +30,7 @@ router.get('/profile', async (req, res) => {
       secondUser = await User.findById(secondUserID)
     }
  
-    res.render('profile', { user, secondUser });
+    res.render('profile', { user, secondUser, message });
     
   } catch (error) {
     console.log(error)

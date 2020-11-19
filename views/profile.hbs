@@ -14,10 +14,13 @@
     Connect to:
    {{#if secondUser}}
       <input type="text" name="username" id="username" placeholder="Enter username" value="{{secondUser.username}}" disabled>
-      <button type="submit" disabled>Connect</button>
+      <button type="submit" disabled>Connect to a friend first</button>
     {{else}}
+      {{#if message}}
+      <h3>{{message}}</h3>
       <input type="text" name="username" id="username" placeholder="Enter username">
       <button type="submit">Connect</button>
+      {{/if}}
    {{/if}} 
   </label>
 </form>

@@ -7,7 +7,12 @@
 
 <div>
   <form action="/search" method="POST">
-    <button class="btn-grad-start" type="submit">Start!</button>
+  {{#if user.isConnected}}
+      <button class="btn-grad-start" type="submit">Start!</button>
+      {{else}}
+      <button class="btn-grad-start" type="submit"disabled>Start!</button>
+      <p>Go to your profile and connect to a friend</p>
+    {{/if}}
   </form>
 </div>
 

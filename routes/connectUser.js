@@ -10,6 +10,8 @@ router.post('/connect', async (req, res) => {
   try {
     const findingUserToConnect = await User.findOne(userToConnect)
     let userTwo = findingUserToConnect._id
+    await User.findByIdAndUpdate(userOne, {isConnected: true})
+    await User.findByIdAndUpdate(userTwo, {isConnected: true})
     await UserPair.create({userOne, userTwo})
     res.redirect('/search')
   } catch (error) {
