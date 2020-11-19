@@ -19,4 +19,29 @@ router.post('/connect', async (req, res) => {
   }
 })
 
+router.post('/delete', async (req, res) => {
+  let userID = req.user._id
+  try {
+    
+    let userPair = await UserPair.findOne({ $or: [{userOne: userID}, {userTwo: userID }]}) 
+
+    await UserPair.findByIdAndDelete(userPair._id)
+
+    let secondUserID;
+
+    if (userPair.userOne.toString() !== userID.toString()) {
+      secondUserID = userPair.userOne;
+    } else {
+      secondUserID = userPair.userTwo;
+    }
+
+    await User.findByIdAndUpdate(userID, {isConnected: false})
+    await User.findByIdAndUpdate(secondUserID, {isConnected: false})
+
+    res.redirect('/profile')
+  } catch (error) {
+    console.log(error)
+  }
+})
+
 module.exports = router;

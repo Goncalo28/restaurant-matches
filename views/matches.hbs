@@ -1,21 +1,25 @@
-
-
 <nav class="nav-det">
-<ul>
-    <li><a href="/profile"> Profile</a></li>
-      <li> <a href="/home"> Home</a></li>
-    <li> <a href="/logout"> Log Out</a></li>
-</ul>
-
+  <ul>
+      <li><a href="/profile"> Profile</a></li>
+        <li> <a href="/home"> Home</a></li>
+      <li> <a href="/logout"> Log Out</a></li>
+  </ul>
 </nav>
 
-
-<h1>Matches</h1>
-
-{{#each allRestaurantsMatched}}
-  <h5>{{name}}</h5>
-    <a href="/search-liked/{{id}}"><img src={{featured_image}} style="width: 18rem;"></a> 
-    <p>Rating</p>
-    <p>{{user_rating.aggregate_rating}}</p>
-    <p>{{location.city}}</p>
-{{/each}}
+<div class="container">
+  <h1 class="text-center">Matches</h1>
+    <div class="row" style="margin-left: 12px;">
+      {{#each allRestaurantsMatched}}
+        <div class="col-sm-4">
+          <div class="card" style="width: 18rem;">
+            <a href="/search-liked/{{id}}" class="card-img-top"><img src={{featured_image}} style="width: 18rem; height: 15rem"></a>
+              <div class="card-body text-left">
+              <h5 class="card-title">{{name}}</h5>
+              <p class="card-text">Rating: {{user_rating.aggregate_rating}}</p>
+              <p class="card-text">City: {{location.city}}</p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+  </div>
+</div>

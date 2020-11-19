@@ -1,40 +1,30 @@
-
-
 <nav class="nav-det">
-<ul>
-    <li><a href="/profile"> Profile</a></li>
-  
-    <li> <a href="/logout"> Log Out</a></li>
-</ul>
-
+  <ul>
+      <li><a href="/profile"> Profile</a></li>
+      <li> <a href="/matches"> Matches</a></li>
+      <li> <a href="/logout"> Log Out</a></li>
+  </ul>
 </nav>
 
-
-
 <div id="loginpage">
-<img src="/images/logo.png">
-
-
-
-
-<div class="card" style="width: 18rem;">
-  <div id="matched-image">
-  <img src={{featured_image}} class="card-img-top" alt="...">
+  <img src="/images/logo.png">
+  <h2>It's a MATCH!!!!</h2>
+  <div class="card" style="width: 18rem;">
+    <div id="matched-image">
+    <img src={{featured_image}} class="card-img-top" alt="...">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{name}}</h5>
+      <p class="card-text">Type of cuisine: {{cuisines}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Book here: {{phone_numbers}}</li>
+      <li class="list-group-item">{{timings}}</li>
+      <li class="list-group-item">{{location.locality_verbose}}</li>
+    </ul>
+    <div class="card-body">
+    <a href="{{menu_url}}"> Menu</a>
+      <a href="/search"> Keep searching</a>
+    </div>
   </div>
-  <div class="card-body">
-    <h5 class="card-title">{{name}}</h5>
-    <p class="card-text">Type of cuisine: {{cuisines}}</p>
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Book here: {{phone_numbers}}</li>
-    <li class="list-group-item">{{timings}}</li>
-    <li class="list-group-item">{{location.locality_verbose}}</li>
-  </ul>
-  <div class="card-body">
-   <a href="{{menu_url}}"> Menu</a>
-    <a href="/search"> Keep searching</a>
-  </div>
-</div>
-
-
 </div>
