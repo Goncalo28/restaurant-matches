@@ -1,32 +1,39 @@
 
+<nav class="nav-det">
+<ul>
+    <li><a href="/profile"> Profile</a></li>
+  
+    <li> <a href="/matches"> Matches</a></li>
+    <li> <a href="/logout"> Log Out</a></li>
+</ul>
+
+</nav>
 
 
+<div class="bg-det">
 
-
-
-<div class="container py-3">
-  <h1> details</h1>
-    <div class="card">
-      <div class="row ">
+<div class="container py-3 ">
+  <h1> Restaurant Details</h1>
+    <div class="card ">
+      <div class="row bg-color ">
         <div class="col-md-4">
-            <img src="{{featured_image}}" class="w-100" style=" height: 150px;">
+            <img src="{{featured_image}}" class="det-img">
           </div>
           <div class="col-md-8 px-3">
-            <div class="card-block px-3">
+            <div class="card-block px-3 rest-det">
               <h4 class="card-title">{{name}}</h4>
               <p class="card-text">{{user_rating.aggregate_rating}} </p>
               <p class="card-text">{{cuisines}} </p>
               <p class="card-text">{{phone_numbers}} </p>
               <p class="card-text">{{timings}} </p>
-              <p class="card-text"><a href="{{menu_url}}"> Menu</a> </p>
+              <p class="card-text"><a class="links" href="{{menu_url}}"> Menu</a> </p>
               <p class="card-text">{{location.locality_verbose}} </p>
-
-
             </div>
           </div>
         </div>
       </div>
+        <a class="links" href="/search"> Keep searching</a>
     </div>
   </div>
-  <a href="/search"> Keep searching</a>
+</div>
 

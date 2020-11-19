@@ -31,7 +31,7 @@
           
           
           .mainpic {
-            height: 690px;
+            height: 100vh;
             background-image: url("../images/backgroundpic.jpg");
             background-size: cover;
             display: flex;
@@ -54,12 +54,12 @@
           }
   
 
-        .navbar {
-          position: absolute !important;
-          background: transparent !important;
-          width: 100% !important;
-          margin-top: 20px;
-        }
+          .navbar {
+            position: absolute !important;
+            background: transparent !important;
+            width: 100% !important;
+            margin-top: 20px;
+          }
 
         .navbar-brand {
           color: white !important;
@@ -237,6 +237,55 @@
 
 
                     /* DETAILS PAGE *******************************************************************/
-          .details {
-            d
+       .card {
+        border: 6px outset red !important;
+        border-radius: 20px !important;
+        margin-bottom: 10px;
+       }
+
+       .rest-det{
+         height: 350px;
+         margin-left: 30px;
+         margin-top: 10px;
+  
+       }
+      .det-img{
+        height: 350px;
+         width: 390px;
+         padding: 9px;
+        }
+
+        .container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+ 
+        }
+
+        .card-text,
+        .card-title{
+          text-align: center;
+        }
+   
+        .nav-det ul{
+          background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+            list-style-type: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+            padding: 15px;
           }
+        
+          .nav-det a{
+            margin-left: 14px;
+            color: white;
+            font-size: 20px;
+          }
+          .nav-det a:hover{
+            margin-left: 14px;
+            text-decoration: none;
+            font-weight: bold;
+            color: white;
+
+          }
+     
