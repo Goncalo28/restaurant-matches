@@ -28,14 +28,30 @@
             color: #fff;
             text-decoration: none;
           }
-         
+          
+          
           .mainpic {
-            height: 600px;
+            height: 850px;
             background-image: url("../images/backgroundpic.jpg");
-            background-size: 100%;
+            background-size: cover;
             display: flex;
           }
+          
 
+          @media only screen and (max-width: 812px) {
+            /* For mobile phones: */
+            [class*="mainpic"] {
+              width: 100%;
+              height: 780px;
+            }
+            [class*="btn-grad"]{
+              margin-top: 100%;
+              margin-left: 25% !important;
+            }
+            [class*="navbar-nav"]{
+              margin-right: 50% !important;
+            }
+          }
   
 
         .navbar {
@@ -48,22 +64,20 @@
         .navbar-brand {
           color: white !important;
           font-size: 30px !important;
+          /* margin-right: 85% !important; */
         }
 
-        .navbar-nav {
-          margin-right: 10%;
-          margin-left: 85%;
+        .login {
           background: white;
           color: #FF512F;
           padding-left: 15px !important;
           padding: 9px 15px;
           border-radius: 7px;
-
         }
 
         .navbar-nav:hover {
-        text-decoration: none;
-        background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
+          text-decoration: none;
+          background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
           color: white;
           border-radius: 7px;
         }
