@@ -3,8 +3,10 @@
 <ul>
     <li><a href="/profile"> Profile</a></li>
   
-    <li> <a href="/matches"> Matches</a></li>
-    <li> <a href="/logout"> Log Out</a></li>
+    {{#if user.isConnected}}
+    <li> <a href="/matches"> Matches</a></li>    
+    {{/if}}
+    <li> <a href="/logout"> Logout</a></li>
 </ul>
 
 </nav>
@@ -13,13 +15,13 @@
 <div class="bg-det">
 
 <div class="container py-3 ">
-  <h1> Restaurant Details</h1>
-    <div class="card ">
-      <div class="row bg-color ">
+  <h1 class="links"> Restaurant Details</h1>
+    <div class="card" style="border: none;">
+      <div class="row bg-color">
         <div class="col-md-4">
             <img src="{{featured_image}}" class="det-img">
           </div>
-          <div class="col-md-8 px-3">
+          <div class="col-md-8 px-3 text-center">
             <div class="card-block px-3 rest-det">
               <h4 class="card-title">{{name}}</h4>
               <p class="card-text">{{user_rating.aggregate_rating}} </p>
@@ -28,11 +30,11 @@
               <p class="card-text">{{timings}} </p>
               <p class="card-text"><a class="links" href="{{menu_url}}"> Menu</a> </p>
               <p class="card-text">{{location.locality_verbose}} </p>
+              <a class="links" href="/search"> Keep searching</a>
             </div>
           </div>
         </div>
       </div>
-        <a class="links" href="/search"> Keep searching</a>
     </div>
   </div>
 </div>

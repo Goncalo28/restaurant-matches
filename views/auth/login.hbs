@@ -1,28 +1,28 @@
-<div id="loginpage">
+<div id="loginpage" class="container">
 
-<img src="/images/logo.png">
-<h1>Login</h1>
+  <img src="/images/logo.png" style="margin-top: 1em;">
+  <h1>Login</h1>
 
-<div id="formlogin">
-<form  action="/login" method="POST">
-  
-    <label for="username">Username:</label>
-    <input type="text" name="username"> <br>
-    <label for="password">Password: </label>
-    <input type="password" name="password"> <br>
-    <button class="btn-grad-login" type="submit">Log in</button>
-  
-
-  {{#if errorMessage}}
-    <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
-  {{/if}}
-
-   <p class="account-message">
-    Don't have have an account?
-    <a href="/signup">Sign up</a>
-  </p>
-  {{!-- <a href="/auth/facebook">Login with Facebook</a> --}}
-  <a class="login" href="/auth/google"><img src="images/google.png" alt="google-login-image" style="width: 20px; margin-left: -0.8em;"> || Sign in with google</a>
-</form>
-</div>
+  <div id="formlogin">
+    <form action="/login" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input class="form-control" type="text" name="username"> <br>
+        <label for="password">Password: </label>
+        <input class="form-control" type="password" name="password"> <br>
+        {{!-- <button class="btn-grad-login" type="submit">Log in</button> --}}
+        <button style="margin-top: 10px; margin-left: 0%; width: 100%;" class="btn-grad-edit" type="submit">Log in</button>
+        {{#if errorMessage}}
+          <div class="alert alert-danger" role="alert">{{errorMessage}}</div>
+        {{/if}}
+        <p class="account-message" style="margin-top: 20px; margin-left: 11px;">
+        Don't have have an account?
+        <a href="/signup">Sign up</a>
+        </p>
+        <p>OR</p>
+      {{!-- <a href="/auth/facebook">Login with Facebook</a> --}}
+        <a class="btn-grad-edit" href="/auth/google" style="margin-top: 20px; margin-left: 0%; width: 100%;"><img src="images/google.png" alt="google-login-image" style="width: 28px; margin-left: -0.8em;">   Sign in with google</a>
+      </div>
+    </form>
+  </div>
 </div>

@@ -1,27 +1,22 @@
-
-
 <nav class="nav-det">
 <ul>
     <li><a href="/profile"> Profile</a></li>
-  
-    <li> <a href="/matches"> Matches</a></li>
-    <li> <a href="/logout"> Log Out</a></li>
+    <li> <a href="/matches"> Matches</a></li>    
+    <li> <a href="/logout"> Logout</a></li>
 </ul>
-
 </nav>
 
 
-<div id="loginpage">
-<img src="/images/logo.png">
+<div id="loginpage" class="rest-img">
+{{!-- <img src="/images/logo.png" style="margin-bottom: 2em"> --}}
 
-<h1> Restaurants</h1>
-
-
-    <h1>{{name}}</h1>
-    <a href="/search-liked/{{id}}"><img src={{featured_image}} style="width: 18rem;"></a> 
-    <p>Rating: {{user_rating.aggregate_rating}}</p>
-    <p>City: {{location.city}}</p>
-
+<h2 class="links" style="margin-bottom: 0.5em; margin-top: 0.2em">You either like it OR not!</h2>
+    <a class="rest-img" href="/search-liked/{{id}}"><img class="rest-img" src={{featured_image}} style="width: 22rem; margin-bottom: 1em;"></a> 
+    <h4 style="margin-top: 0.8em;">{{name}}</h4>
+    <div style="margin-bottom: 0.8em;">
+        <h5>Rating: {{user_rating.aggregate_rating}}</h5>
+        <h5>City: {{location.city}}</h5>
+    </div>
 <div id="likeornot">
         <form action="/search" method="POST">
     <button class="btn-like" type="submit">Not this one</button>

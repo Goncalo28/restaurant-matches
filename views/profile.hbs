@@ -1,45 +1,49 @@
-
-
 <nav class="nav-det">
 <ul>
     <li><a href="/home"> Home</a></li>
-  
-    <li> <a href="/matches"> Matches</a></li>
-    <li> <a href="/logout"> Log Out</a></li>
+    {{#if user.isConnected}}
+    <li> <a href="/matches"> Matches</a></li>    
+    {{/if}}
+    <li> <a href="/logout"> Logout</a></li>
 </ul>
-
 </nav>
 
-<div id="loginpage">
-  <img src="/images/logo.png">
-
-  <h1>Welcome to your profile, {{user.username}} </h1>
-  <p>Username: {{user.username}}</p>
-  <p>Email: {{user.email}}</p>
-  <p>First Name: {{user.firstName}}</p>
-  <p>Last Name: {{user.lastName}}</p>
-
-  <form action="/connect" method="POST">
+<div id="loginpage" class="container" style="margin-top: 2%;">
+  {{!-- <img src="/images/logo.png"> --}}
+  <div class="text-left">
+    <h3 style="margin-bottom: 5%; margin-top: 20%;" class="links">Your profile info:</h3>
+    <br>
+    <p><strong>Username:</strong> {{user.username}}</p>
+    <p><strong>Email:</strong> {{user.email}}</p>
+    <p><strong>First Name:</strong> {{user.firstName}}</p>
+    <p><strong>Last Name:</strong> {{user.lastName}}</p>
+  <form action="/connect" method="POST" style="margin-top: 2em;">
+  <div class="form-group">
     <label for="connect-to-another-user">
     {{#if secondUser}}
-        Connected to:
-        <input type="text" name="username" id="username" placeholder="Enter username" value="{{secondUser.username}}" disabled>
+        <label>Connected to:</label>
+        <input class="form-control" type="text" name="username" id="username" placeholder="Enter username" value="{{secondUser.username}}" disabled>
         <button type="submit" hidden>Connect to a friend first</button>
       {{else}}
         {{#if message}}
-        <h5>{{message}}</h5>
-        <input type="text" name="username" id="username" placeholder="Enter username">
-        <button type="submit">Connect</button>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{message}}
+        </div>
+        <div class="d-flex justify-content-between">
+          <input class="form-control" type="text" name="username" id="username" placeholder="Enter username">
+          <button type="submit" class="btn btn-success">Connect</button>
+        </div>
         {{/if}}
     {{/if}} 
     </label>
   </form>
-
   {{#if secondUser}}
       <form action="/delete" method="POST">
-        <button type="submit">Delete connection</button>
+        <button class="btn btn-danger" type="submit">Delete connection</button>
       </form>
   {{/if}}
-
-  <a class="links" href="/profile/edit">Edit</a>
+  </div>
+  {{!-- <button style="margin-top: 30px;" class="btn-grad-edit" type="submit">Update your info</button> --}}
+  <a style="margin-top: 65% !important;" class="btn-grad-edit" href="/profile/edit">Edit</a>
+  </div>
 </div>

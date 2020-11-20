@@ -1,29 +1,31 @@
 
 <nav class="nav-det">
 <ul>
-    <li><a href="/profile"> Profile</a></li>
-  
-    <li> <a href="/matches"> Matches</a></li>
-    <li> <a href="/logout"> Log Out</a></li>
+    <li><a href="/profile"> Profile</a></li>  
+    {{#if user.isConnected}}
+    <li> <a href="/matches"> Matches</a></li>    
+    {{/if}}
+    <li> <a href="/logout"> Logout</a></li>
 </ul>
-
 </nav>
 
-
-
 <div id="loginpage">
+<img src="/images/logo.png" style="margin-top: 1em;">
 
-<img src="/images/logo.png">
-<h1>Hey {{user.username}}</h1>
-<p>This is your home page</p>
-
-<div>
+<h1 style="margin-top: 2em;">Hey {{user.username}}</h1>
+<br>
+<h5>Welcome to your home page</h5>
+<br>
+<div class="container text-center align-middle" style="margin-top: 3em;">
   <form action="/search" method="POST">
   {{#if user.isConnected}}
-      <button class="btn-grad-start" type="submit">Start!</button>
+      <button class="btn-grad-start" style="margin-top: 6em; margin-left: 2em !important;" type="submit">Start!</button>
       {{else}}
-      <button class="btn-grad-start" type="submit"disabled>Start!</button>
-      <p>Go to your profile and connect to a friend</p>
+      <button class="btn-grad-start" style="margin-left: 2em !important;" type="submit" hidden>Start!</button>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 15%;">
+      Go to your profile to connect with a friend.
+      </div>
+      <a class="btn-grad-edit" style="margin-top: 0px !important; margin-left: 0%; width: 100%;" href="/profile">Profile page</a>
     {{/if}}
   </form>
 </div>

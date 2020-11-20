@@ -13,7 +13,7 @@ router.get('/profile', async (req, res) => {
     return;
   }
   if(!user.isConnected){
-    message = 'Please connect'
+    message = 'Connect to a friend'
   }
 
   try {

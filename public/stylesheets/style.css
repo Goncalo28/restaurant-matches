@@ -1,7 +1,7 @@
 
 
          @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
- 
+        
 
 
          /* MAIN PAGE *******************************************************************/
@@ -50,6 +50,29 @@
             }
             [class*="navbar-nav"]{
               margin-right: 50% !important;
+            }
+            [class*="btn-grad-edit"]{
+              width: 100%;
+              margin-left: 0px !important;
+              /* margin-top: 65% !important; */
+            }
+            [class*="rest-img"]{
+              width: 100vw !important;
+              height: 50vh;
+              margin-right: 0px !important;
+              margin-left: 0px !important;
+            }
+            [class*="btn-like"]{
+              margin-top: 2em;
+            }
+            [class*="row-mobile"]{
+              margin-right: 16px !important;
+              margin-left: -16px !important;
+              height: 60vh !important;
+            }
+            [class*="login-mobile"]{
+              display: flex;
+              flex-direction: column;
             }
           }
   
@@ -217,7 +240,8 @@
           }
 
           .btn-like{
-            margin-right: 10px;
+            margin-right: 2em;
+            margin-left: 2em;
             background-image: linear-gradient(to right, #FF512F 0%, #DD2476  51%, #FF512F  100%);
             padding: 15px 25px;
             text-align: center;
@@ -238,8 +262,8 @@
 
                     /* DETAILS PAGE *******************************************************************/
        .card {
-        border: 6px outset red !important;
-        border-radius: 20px !important;
+        /* border: 6px outset red !important; */
+        /* border-radius: 20px !important; */
         margin-bottom: 10px;
        }
 
@@ -259,7 +283,6 @@
           display: flex;
           flex-direction: column;
           align-items: center;
- 
         }
 
         .card-text,

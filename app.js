@@ -66,7 +66,7 @@ app.use(require('node-sass-middleware')({
 app.use(
   session({
     secret: 'secret', 
-    cookie: {maxAge: 60000},
+    cookie: {maxAge: 300000},
     rolling: true
   })
 )
@@ -166,7 +166,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // default value for title local
-app.locals.title = 'Matchres';
+app.locals.title = 'matchRes';
 
 const login = require('./routes/login');
 app.use('/', login);

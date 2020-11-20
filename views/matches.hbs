@@ -2,17 +2,17 @@
   <ul>
       <li><a href="/profile"> Profile</a></li>
         <li> <a href="/home"> Home</a></li>
-      <li> <a href="/logout"> Log Out</a></li>
+      <li> <a href="/logout"> Logout</a></li>
   </ul>
 </nav>
 
 <div class="container">
-  <h1 class="text-center">Matches</h1>
-    <div class="row" style="margin-left: 12px;">
+  <h1 class="text-center links">Matches</h1>
+    <div class="row row-mobile rest-img d-flex justify-content-around" style="margin-left: 0px;">
       {{#each allRestaurantsMatched}}
-        <div class="col-sm-4">
-          <div class="card" style="width: 18rem;">
-            <a href="/search-liked/{{id}}" class="card-img-top"><img src={{featured_image}} style="width: 18rem; height: 15rem"></a>
+        <div class="col-sm-4 rest-img">
+          <div class="card bg-light rest-img" style="width: 18rem;">
+            <a href="/search-liked/{{id}}" class="card-img-top"><img src={{featured_image}} class="rest-img" style="width: 18rem; height: 15rem"></a>
               <div class="card-body text-left">
               <h5 class="card-title">{{name}}</h5>
               <p class="card-text">Rating: {{user_rating.aggregate_rating}}</p>
